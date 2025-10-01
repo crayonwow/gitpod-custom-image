@@ -1,35 +1,44 @@
-FROM ubuntu:latest
-
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt update && apt install -y \
   python3 \
   python3-pip \
-  python3-dev \
+  python3-venv \
+  python3-setuptools \
   build-essential \
   libssl-dev \
   libffi-dev \
-  python3-setuptools \
-  python3-venv \
-  git \
   curl \
-  zsh \
+  gpg 
+
+RUN curl -fsSL https://apt.cli.rs/pubkey.asc | sudo tee -a /usr/share/keyrings/rust-tools.asc && \
+  curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d/rust-tools.list && \
+  apt update 
+
+RUN apt install -y \ 
+  bat \
+  zoxide \
+  neovim \
+  ripgrep \
+  eza \
   && rm -rf /var/lib/apt/lists/*
 
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 
-RUN curl -L https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz >> nvim.tar.gz && \
-  tar -C /usr/local -xzf nvim.tar.gz && \
-  rm nvim.tar.gz 
+RUN curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v0.55.1/lazygit_0.55.1_linux_arm64.tar.gz" 
+RUN tar xf lazygit.tar.gz lazygit 
+RUN install lazygit -D -t /usr/local/bin/ 
 
-RUN curl -L https://go.dev/dl/go1.21.5.linux-amd64.tar.gz >> go.tar.gz && \
-  tar -C /usr/local -xzf go.tar.gz && \
-  rm go.tar.gz
-
-RUN git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim && \
-  git clone https://github.com/crayonwow/astrovim_user_config.git ~/.config/nvim/lua/user
-
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# RUN chsh -s $(which zsh)
 
 
-ENV PATH=$PATH:/usr/local/nvim-linux64/bin
-ENV PATH=$PATH:/usr/local/go/bin
-ENV PATH="/root/.cargo/bin:${PATH}"
+# RUN curl -L https://go.dev/dl/go1.24.0.linux-amd64.tar.gz >> go.tar.gz && \
+#   tar -C /usr/local -xzf go.tar.gz && \
+#   rm go.tar.gz
+
+# RUN git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim && \
+#   git clone https://github.com/crayonwow/astrovim_user_config.git ~/.config/nvim/lua/user
+
+#
+# ENV PATH=$PATH:/usr/local/nvim-linux64/bin
+# ENV PATH=$PATH:/usr/local/go/bin
