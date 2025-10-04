@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir -p $HOME/.config
+
+git clone --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
+
+# ln -s -f ~/configs/.gitconfig .gitconfig
+# ln -s -f ~/configs/lazygit.yml
+# ln -s -f ~/configs/lazygit.yml config.yml
+# ln -s -f ~/configs/aerospace.toml .aerospace.toml
+# ln -s -f ~/configs/.gitconfig
