@@ -2,7 +2,7 @@
 
 mkdir -p $HOME/.config
 
-git clone --depth 1 https://github.com/crayonwow/configs.git $HOME
+git clone --depth 1 https://github.com/crayonwow/configs.git
 git clone --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
 # curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 
@@ -13,6 +13,11 @@ sudo tar -xzf file.tar.gz
 sudo mv delta-0.18.2-aarch64-unknown-linux-gnu/delta /usr/local/bin
 cd -
 sudo rm -r tmp_delta
+
+curl -fsSL https://apt.cli.rs/pubkey.asc | sudo tee -a /usr/share/keyrings/rust-tools.asc
+curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d/rust-tools.list
+sudo apt update
+sudo apt install zoxide
 
 cp configs/.tmux.conf.local $HOME
 cp configs/.zshrc $HOME
