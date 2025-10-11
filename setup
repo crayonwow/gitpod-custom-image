@@ -2,20 +2,20 @@
 
 mkdir -p $HOME/.config
 
-git clone --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
 git clone --depth 1 https://github.com/crayonwow/configs.git $HOME
+git clone --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 
-mkdir tmp_delta
-cd tmp_delta
-curl -L https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz > file.tar.gz
-sudo tar -xzf file.tar.gz
-sudo mv delta-0.18.2-aarch64-unknown-linux-gnu/delta /usr/local/bin
-cd -
-rm -r tmp_delta
-
-ln -s -f .tmux/.tmux.conf
-cp ~/configs/.tmux.conf.local .
-cp ~/configs/.zshrc .
-ln -s -f ~/configs/.gitconfig .gitconfig
-cp ~/configs/lazygit.yml ~/.config/lazygit/config.yml
+# mkdir tmp_delta
+# cd tmp_delta
+# curl -L https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz > file.tar.gz
+# sudo tar -xzf file.tar.gz
+# sudo mv delta-0.18.2-aarch64-unknown-linux-gnu/delta /usr/local/bin
+# cd -
+# rm -r tmp_delta
+#
+# ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
+# cp configs/.tmux.conf.local $HOME
+# cp configs/.zshrc $HOME
+# cp ~/configs/lazygit.yml ~/.config/lazygit/config.yml
+# ln -s -f ~/configs/.gitconfig .gitconfig
