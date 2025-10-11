@@ -14,8 +14,8 @@ sudo mv delta-0.18.2-aarch64-unknown-linux-gnu/delta /usr/local/bin
 cd -
 sudo rm -r tmp_delta
 
-# ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
-# cp configs/.tmux.conf.local $HOME
-# cp configs/.zshrc $HOME
-# cp ~/configs/lazygit.yml ~/.config/lazygit/config.yml
+cp configs/.tmux.conf.local $HOME
+cp configs/.zshrc $HOME
+cp configs/lazygit.yml $HOME/.config/lazygit/config.yml
 # ln -s -f ~/configs/.gitconfig .gitconfig
+# ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
