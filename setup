@@ -1,10 +1,12 @@
 #!/bin/bash
 
 mkdir -p $HOME/.config
+mkdir -p $HOME/.config/lazygit
 
 git clone --depth 1 https://github.com/crayonwow/configs.git
 git clone --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
-# curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
+git clone --single-branch --depth 1 https://github.com/gpakosz/.tmux.git
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 
 mkdir tmp_delta
 cd tmp_delta
@@ -19,8 +21,8 @@ curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d
 sudo apt update
 sudo apt install zoxide
 
-cp configs/.tmux.conf.local $HOME
 cp configs/.zshrc $HOME
 cp configs/lazygit.yml $HOME/.config/lazygit/config.yml
-# ln -s -f ~/configs/.gitconfig .gitconfig
-# ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
+ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
+cp configs/.tmux.conf.local $HOME
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
