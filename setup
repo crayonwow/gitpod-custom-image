@@ -1,20 +1,24 @@
 #!/bin/bash
 
-if [-e INITED]; then
+if [ -e INITED ]; then
+  echo "✅ Already installed"
   exit 0
 fi
 
+echo "📁 Creating directories"
 mkdir -p $HOME/.config
 mkdir -p $HOME/.config/lazygit
 mkdir -p $HOME/configs/completions
 mkdir -p $HOME/configs/work
 
+echo "💾 Cloning repositories"
 git clone --single-branch --depth 1 https://github.com/crayonwow/configs.git
 git clone --single-branch --depth 1 https://github.com/crayonwow/astronvim_v4.git $HOME/.config/nvim
 git clone --single-branch --depth 1 https://github.com/gpakosz/.tmux.git
 git clone --single-branch --depth 1 https://github.com/spaceship-prompt/spaceship-prompt.git "/home/vscode/.oh-my-zsh/custom/themes/spaceship-prompt" 
 
 # install delta 
+echo "🔺 Installing delta"
 mkdir tmp_delta
 cd tmp_delta
 curl -L https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.18.2-aarch64-unknown-linux-gnu.tar.gz > file.tar.gz
@@ -26,11 +30,13 @@ sudo rm -r tmp_delta
 # install apt packages
 # eza from devpod features works incorrectly
 # no zoxide
+echo "📦 Installing apt packages"
 curl -fsSL https://apt.cli.rs/pubkey.asc | sudo tee -a /usr/share/keyrings/rust-tools.asc
 curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d/rust-tools.list
 sudo apt update
 sudo apt install -y zoxide eza python3-pip python3-venv
 
+echo "🔗 Linking all together"
 cp $PWD/configs/.zshrc $HOME
 ln -s "/home/vscode/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "/home/vscode/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 cp configs/lazygit.yml $HOME/.config/lazygit/config.yml
@@ -39,3 +45,4 @@ ln -s -f $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
 cp configs/.tmux.conf.local $HOME
 
 touch INITED
+echo "✅ Success"
