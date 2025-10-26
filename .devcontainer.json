@@ -25,7 +25,8 @@
 		"ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
 			"packages": "mysql-client"
 		},
-		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {}
+		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
+		"ghcr.io/devcontainers/features/sshd:1": {}
 	},
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu"
 }
