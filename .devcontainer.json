@@ -7,11 +7,13 @@
 		"ghcr.io/devcontainers/features/git:1": {},
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers/features/terraform:1": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:4": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:4": {
+		    "moby": false,
+		},
 		"ghcr.io/devcontainers/features/common-utils:2": {
 			"configureZshAsDefaultShell": true,
-			"installOhMyZsh": true,
 			"upgradePackages": true
+			"installOhMyZshConfig": false,
 		},
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
 		"ghcr.io/jungaretti/features/make:1": {},
@@ -25,8 +27,7 @@
 		"ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
 			"packages": "mysql-client"
 		},
-		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {},
-		"ghcr.io/devcontainers/features/sshd:1": {}
+		"ghcr.io/jsburckhardt/devcontainer-features/bat:1": {}
 	},
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu"
 }
